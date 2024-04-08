@@ -1,6 +1,6 @@
-import 'package:coachingerbeton/junk/first.dart';
-import 'package:coachingerbeton/views/pages/spalsh_screen.dart';
-import 'package:coachingerbeton/views/pages/welcome_screen.dart';
+
+import 'package:coachingerbeton/views/pages/home_page.dart';
+import 'package:coachingerbeton/views/pages/onboardings/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       child:  MaterialApp(
         // theme: ThemeData(scaffoldBackgroundColor: Colors.green),
         debugShowCheckedModeBanner: false,
-        home: WelcomeScreen(),
+        home: HomePage(),
       ),
     );
   }

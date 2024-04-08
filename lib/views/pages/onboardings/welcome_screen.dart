@@ -1,8 +1,9 @@
-import 'package:coachingerbeton/views/pages/spalsh_screen.dart';
+
+import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../components/fonts.dart';
+import '../../components/fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

@@ -73,7 +73,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     },
                     child: Text(
                       'Submit',
-                      style: titlePopins.copyWith(color: Colors.black),
+                      style: titlePopins.copyWith(color: Colors.white),
                     ))
               ],
             ),

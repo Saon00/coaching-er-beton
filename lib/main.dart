@@ -1,4 +1,3 @@
-
 import 'package:coachingerbeton/views/pages/home_page.dart';
 import 'package:coachingerbeton/views/pages/onboardings/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => NumberListProvider())
       ],
-      child:  MaterialApp(
+      child: MaterialApp(
         // theme: ThemeData(scaffoldBackgroundColor: Colors.green),
         debugShowCheckedModeBanner: false,
         home: HomePage(),

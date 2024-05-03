@@ -1,4 +1,3 @@
-
 import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,11 +20,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Form(
             key: key,
             child: ListView(
-
               // shrinkWrap: true,
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +34,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   "Welcome",
                   style: titlePopins.copyWith(fontSize: 30),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
 
                 // Name form field
                 TextFormField(
@@ -54,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
 
@@ -67,7 +67,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SplashScreen()),
+                                builder: (context) => const SplashScreen()),
                             (route) => false);
                       }
                     },

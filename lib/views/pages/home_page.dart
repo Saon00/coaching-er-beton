@@ -1,6 +1,7 @@
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
+import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // drawer
-      drawer: const Drawer(),
+      drawer: const MyDrawer(),
 
       appBar: AppBar(
         backgroundColor: primaryColor,

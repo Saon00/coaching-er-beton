@@ -29,7 +29,7 @@ class DebitCreditWidget extends StatelessWidget {
           children: [
             Text(title, style: titlePopins.copyWith(fontSize: 30)),
             const SizedBox(height: 5),
-            Text('$amount Tk', style: titlePopins.copyWith(fontSize: 30)),
+            Text('$amount ৳', style: titlePopins.copyWith(fontSize: 30)),
           ],
         ),
       ),

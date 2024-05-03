@@ -1,4 +1,3 @@
-import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';

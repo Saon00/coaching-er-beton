@@ -1,7 +1,7 @@
-import 'package:coachingerbeton/views/components/colors.dart';
-import 'package:coachingerbeton/views/components/fonts.dart';
+import 'package:coachingerbeton/views/pages/students/studentwidgets/textformwid.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StudentInformationPage extends StatefulWidget {
   const StudentInformationPage({super.key});
@@ -17,7 +17,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Information'),
+        title: Text(AppLocalizations.of(context)!.studentinformation),
       ),
       body: Form(
           key: key,
@@ -76,40 +76,6 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
               ),
             ),
           )),
-    );
-  }
-}
-
-class TextFormWidget extends StatelessWidget {
-  String hintText;
-  TextEditingController controller;
-  TextInputType textInputType;
-  FormFieldValidator? fieldValidator;
-  TextFormWidget({
-    required this.controller,
-    required this.hintText,
-    required this.textInputType,
-    this.fieldValidator,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      validator: fieldValidator,
-      controller: controller,
-      keyboardType: textInputType,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey)),
-        hintText: hintText,
-        hintStyle: titlePopins,
-        fillColor: greyColor,
-        focusColor: greyColor,
-      ),
-      cursorColor: greyColor,
     );
   }
 }

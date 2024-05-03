@@ -1,0 +1,14 @@
+{
+    "studentinformation": "Student Information",
+    "paid": "Paid",
+    "unpaid" : "Unpaid",
+    "name": "name",
+    "studentnamerequired" : "student's name required",
+    "studentclassrequired" : "student's class required",
+    "studentphonenumberrequired" : "student's phone number required",
+    "classname" : "class",
+    "address" : "address",
+    "phonenumber" : "phone number",
+    "enterdisplayname" : "enter your display name",
+    "submit" : "Submit"
+}

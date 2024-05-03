@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
       drawer: const MyDrawer(),
 
       appBar: AppBar(
-        backgroundColor: primaryColor,
         // profile name
         actions: [
           Padding(

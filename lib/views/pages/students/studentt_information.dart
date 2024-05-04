@@ -29,7 +29,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                   // name
                   TextFormWidget(
                     controller: TextEditingController(),
-                    hintText: "name",
+                    hintText: AppLocalizations.of(context)!.name,
                     textInputType: TextInputType.text,
                     fieldValidator: (value) {
                       if (value == null) {
@@ -42,7 +42,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                   //class
                   TextFormWidget(
                     controller: TextEditingController(),
-                    hintText: "class",
+                    hintText: AppLocalizations.of(context)!.classname,
                     textInputType: TextInputType.number,
                     fieldValidator: (value) {
                       if (value == null) {
@@ -55,7 +55,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                   // phone number
                   TextFormWidget(
                     controller: TextEditingController(),
-                    hintText: "phone number",
+                    hintText: AppLocalizations.of(context)!.phonenumber,
                     textInputType: TextInputType.number,
                     fieldValidator: (value) {
                       if (value == null) {
@@ -68,7 +68,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                   // address
                   TextFormWidget(
                     controller: TextEditingController(),
-                    hintText: "address",
+                    hintText: AppLocalizations.of(context)!.address,
                     textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 10),

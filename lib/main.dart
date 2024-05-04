@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'junk/list_provider.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -28,7 +26,6 @@ class MyApp extends StatelessWidget {
     ThemeData themeData = ThemeData();
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => NumberListProvider()),
         ChangeNotifierProvider(create: (context) => LanguageChangeController()),
       ],
       child: Consumer<LanguageChangeController>(
@@ -56,7 +53,7 @@ class MyApp extends StatelessWidget {
                         color: blackColor,
                         fontWeight: FontWeight.bold))),
             debugShowCheckedModeBanner: false,
-            home: const StudentInformationPage(),
+            home: const HomePage(),
           );
         },
       ),

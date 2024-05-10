@@ -1,6 +1,9 @@
+import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
+import 'package:coachingerbeton/views/pages/home_page.dart';
 import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/fonts.dart';
 
@@ -50,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   style: titlePopins.copyWith(
                       color: Colors.black.withOpacity(0.6)),
                   decoration: InputDecoration(
-                      hintText: "enter your display name",
+                      hintText: AppLocalizations.of(context)!.enterdisplayname,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
@@ -64,15 +67,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         backgroundColor: Colors.deepPurple.withOpacity(0.7)),
                     onPressed: () async {
                       if (key.currentState!.validate()) {
+                        saveStudentInfoPref(
+                            "displayName", name.text.toString().trim());
+
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SplashScreen()),
+                                builder: (context) => const HomePage()),
                             (route) => false);
                       }
                     },
                     child: Text(
-                      'Submit',
+                      AppLocalizations.of(context)!.submit,
                       style: titlePopins.copyWith(color: Colors.white),
                     ))
               ],

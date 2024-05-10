@@ -10,5 +10,6 @@
     "address" : "ঠিকানা",
     "phonenumber" : "ফোন নাম্বার",
     "enterdisplayname" : "আপনার নাম লিখুন",
-    "submit" : "জমা দিন"
+    "submit" : "জমা দিন",
+    "namerequired" : "নাম দিতে হবে"
 }

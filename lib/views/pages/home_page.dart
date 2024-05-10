@@ -1,3 +1,4 @@
+import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
@@ -20,6 +21,13 @@ class _HomePageState extends State<HomePage> {
   // final now = DateTime.now();
 
   @override
+  void initState() {
+    super.initState();
+    getStudentInfoPref();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // drawer
@@ -31,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Hi, Saon Sikder',
+              'Hi, $displayName',
               style: titlePopins.copyWith(fontSize: 20),
             ),
           ),

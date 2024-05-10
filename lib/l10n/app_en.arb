@@ -10,5 +10,6 @@
     "address" : "address",
     "phonenumber" : "phone number",
     "enterdisplayname" : "enter your display name",
-    "submit" : "Submit"
+    "submit" : "Submit",
+    "namerequired" : "name required"
 }

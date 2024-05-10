@@ -1,3 +1,4 @@
+import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,9 +11,20 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Logo'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/wallet.png',
+              scale: 2.5,
+            ),
+            Text("Coaching er Beton",
+                style: titlePopins.copyWith(
+                    fontSize: 30, fontWeight: FontWeight.bold))
+          ],
+        ),
       ),
     );
   }

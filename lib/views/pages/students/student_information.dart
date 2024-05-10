@@ -1,9 +1,9 @@
+import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/students/studentwidgets/textformwid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class StudentInformationPage extends StatefulWidget {
   const StudentInformationPage({super.key});
@@ -18,25 +18,47 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   final TextEditingController classController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  String value = "";
+  // String value = "";
 
-  saveStudentInfoPref(String key, String value) async {
-    SharedPreferences studentInformationDb =
-        await SharedPreferences.getInstance();
-    studentInformationDb.setString(key, value);
-  }
+  // saveStudentInfoPref(String key, String value) async {
+  //   SharedPreferences studentInformationDb =
+  //       await SharedPreferences.getInstance();
+  //   studentInformationDb.setString(key, value);
+  // }
 
-  getStudentInfoPref() async {
-    SharedPreferences studentInformationDb =
-        await SharedPreferences.getInstance();
-    value = studentInformationDb.getString('studentName') ?? "null";
-    // return value;
-    setState(() {});
+  // getStudentInfoPref() async {
+  //   SharedPreferences studentInformationDb =
+  //       await SharedPreferences.getInstance();
+  //   value = studentInformationDb.getString('studentName') ?? "null";
+  //   // return value;
+  //   setState(() {});
+  // }
+
+  nfo() {
+    AlertDialog(
+      title: const Text('Student Info'),
+      content: Column(
+        children: [
+          Text(studentName),
+          Text(studentClass),
+          Text(studentPhoneNumber),
+          Text(studentAddress),
+        ],
+      ),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("ok"))
+      ],
+    );
   }
 
   @override
   void initState() {
     super.initState();
+    // value;
     getStudentInfoPref();
   }
 
@@ -103,14 +125,14 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                     onPressed: () async {
                       // FocusScope.of(context).unfocus();
                       if (key.currentState!.validate()) {
-                        saveStudentInfoPref(
-                            'studentName', nameController.text.toString());
-                        saveStudentInfoPref(
-                            'studentClass', classController.text.toString());
+                        saveStudentInfoPref('studentName',
+                            nameController.text.toString().trim());
+                        saveStudentInfoPref('studentClass',
+                            classController.text.toString().trim());
                         saveStudentInfoPref('studentPhoneNumber',
-                            phoneNumberController.text.toString());
+                            phoneNumberController.text.toString().trim());
                         saveStudentInfoPref('studentAddress',
-                            addressController.text.toString());
+                            addressController.text.toString().trim());
                       }
                       nameController.clear();
                       classController.clear();
@@ -125,7 +147,6 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                       style: titlePopins,
                     ),
                   ),
-                  Text(value),
                 ],
               ),
             ),

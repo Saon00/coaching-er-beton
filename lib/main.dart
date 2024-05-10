@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                         color: blackColor,
                         fontWeight: FontWeight.bold))),
             debugShowCheckedModeBanner: false,
-            home: const HomePage(),
+            home: const StudentInformationPage(),
           );
         },
       ),

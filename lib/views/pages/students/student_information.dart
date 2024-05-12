@@ -15,7 +15,7 @@ class StudentInformationPage extends StatefulWidget {
 class _StudentInformationPageState extends State<StudentInformationPage> {
   final GlobalKey<FormState> key = GlobalKey();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController classController = TextEditingController();
+  final TextEditingController batchController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   // String value = "";
@@ -34,32 +34,33 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   //   setState(() {});
   // }
 
-  nfo() {
-    AlertDialog(
-      title: const Text('Student Info'),
-      content: Column(
-        children: [
-          Text(studentName),
-          Text(studentClass),
-          Text(studentPhoneNumber),
-          Text(studentAddress),
-        ],
-      ),
-      actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text("ok"))
-      ],
-    );
-  }
+  // nfo() {
+  //   AlertDialog(
+  //     title: const Text('Student Info'),
+  //     content: Column(
+  //       children: [
+  //         Text(studentName),
+  //         Text(studentClass),
+  //         Text(studentPhoneNumber),
+  //         Text(studentAddress),
+  //       ],
+  //     ),
+  //     actions: [
+  //       TextButton(
+  //           onPressed: () {
+  //             Navigator.of(context).pop();
+  //           },
+  //           child: const Text("ok"))
+  //     ],
+  //   );
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    // value;
-    getStudentInfoPref();
+  Future<void> _addStudent() async {
+    await StudentInfoUtils.saveStudentInfoPref(
+        nameController.text.toString().trim(),
+        batchController.text.toString().trim(),
+        phoneNumberController.text.toString().trim(),
+        addressController.text.toString().trim());
   }
 
   @override
@@ -90,12 +91,12 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                   const SizedBox(height: 10),
                   //class
                   TextFormWidget(
-                    controller: classController,
+                    controller: batchController,
                     hintText: AppLocalizations.of(context)!.classname,
                     textInputType: TextInputType.number,
                     fieldValidator: (value) {
                       if (value?.isEmpty == true) {
-                        return "student's class required";
+                        return "student's batch required";
                       }
                       return null;
                     },
@@ -125,17 +126,17 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                     onPressed: () async {
                       // FocusScope.of(context).unfocus();
                       if (key.currentState!.validate()) {
-                        saveStudentInfoPref('studentName',
-                            nameController.text.toString().trim());
-                        saveStudentInfoPref('studentClass',
-                            classController.text.toString().trim());
-                        saveStudentInfoPref('studentPhoneNumber',
-                            phoneNumberController.text.toString().trim());
-                        saveStudentInfoPref('studentAddress',
-                            addressController.text.toString().trim());
+                        _addStudent();
+
+                        print('Name: ${nameController.text.toString()}');
+
+                        print("${StudentInfoUtils.studentName}");
+                        print("${StudentInfoUtils.studentBatch}");
+                        print("${StudentInfoUtils.studentPhoneNumber}");
+                        print("${StudentInfoUtils.studentAddress}");
                       }
                       nameController.clear();
-                      classController.clear();
+                      batchController.clear();
                       phoneNumberController.clear();
                       addressController.clear();
                     },

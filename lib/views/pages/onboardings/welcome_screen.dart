@@ -1,6 +1,5 @@
 import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/pages/home_page.dart';
-import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,6 +16,16 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   TextEditingController name = TextEditingController();
   GlobalKey<FormState> key = GlobalKey<FormState>();
+
+  Future<void> _addDisplayName() async {
+    await StudentInfoUtils.saveStudentDisplayNamePref(
+        name.text.toString().trim());
+
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+        (route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +76,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         backgroundColor: Colors.deepPurple.withOpacity(0.7)),
                     onPressed: () async {
                       if (key.currentState!.validate()) {
-                        saveStudentInfoPref(
-                            "displayName", name.text.toString().trim());
-
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                            (route) => false);
+                        _addDisplayName();
+                        // saveStudentInfoPref(
+                        //     "displayName", name.text.toString().trim());
                       }
                     },
                     child: Text(

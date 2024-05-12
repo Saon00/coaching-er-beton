@@ -1,25 +1,67 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-late SharedPreferences studentInformationDb;
+class StudentInfoUtils {
+  static String? studentName,
+      studentBatch,
+      studentPhoneNumber,
+      studentAddress,
+      displayName;
 
-String studentName = "";
-String studentClass = "";
-String studentPhoneNumber = "";
-String studentAddress = "";
-String displayName = "";
+  static Future<void> saveStudentInfoPref(
+      String saveStudentName,
+      String saveStudentBatch,
+      String saveStudentPhoneNumber,
+      String saveStudentAddress) async {
+    SharedPreferences studentInformationDb =
+        await SharedPreferences.getInstance();
+    await studentInformationDb.setString('studentName', saveStudentName);
+    await studentInformationDb.setString('studentBatch', saveStudentBatch);
+    await studentInformationDb.setString(
+        'studentPhoneNumber', saveStudentPhoneNumber);
+    await studentInformationDb.setString('studentAddress', saveStudentAddress);
 
-saveStudentInfoPref(String key, String value) async {
-  SharedPreferences studentInformationDb =
-      await SharedPreferences.getInstance();
-  studentInformationDb.setString(key, value);
-}
+    studentName = saveStudentName;
+    studentBatch = saveStudentBatch;
+    studentPhoneNumber = saveStudentPhoneNumber;
+    studentAddress = saveStudentAddress;
+  }
 
-getStudentInfoPref() async {
-  studentInformationDb = await SharedPreferences.getInstance();
-  studentName = studentInformationDb.getString('studentName') ?? "null";
-  studentClass = studentInformationDb.getString('studentClass') ?? "null";
-  studentPhoneNumber =
-      studentInformationDb.getString('studentPhoneNumber') ?? "null";
-  studentAddress = studentInformationDb.getString('studentAddress') ?? "null";
-  displayName = studentInformationDb.getString('displayName') ?? "null";
+  static Future<void> saveStudentDisplayNamePref(String saveDisplayName) async {
+    SharedPreferences studentInformationDb =
+        await SharedPreferences.getInstance();
+    await studentInformationDb.setString('displayName', saveDisplayName);
+
+    displayName = saveDisplayName;
+  }
+
+  static Future<bool> checkExistingUser() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? displayName = sharedPreferences.getString('displayName');
+
+    if (displayName == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  static Future<void> getStudentInfo() async {
+    SharedPreferences studentInformationDb =
+        await SharedPreferences.getInstance();
+    studentName = studentInformationDb.getString('studentName');
+    studentBatch = studentInformationDb.getString('studentBatch');
+    studentPhoneNumber = studentInformationDb.getString('studentPhoneNumber');
+    studentAddress = studentInformationDb.getString('studentAddress');
+    displayName = studentInformationDb.getString('displayName');
+  }
+
+  // getStudentInfoPref() async {
+  //   SharedPreferences studentInformationDb = await SharedPreferences.getInstance();
+  //   studentName = studentInformationDb.getString('studentName') ?? "null";
+  //   studentClass = studentInformationDb.getString('studentClass') ?? "null";
+  //   studentPhoneNumber =
+  //       studentInformationDb.getString('studentPhoneNumber') ?? "null";
+  //   studentAddress = studentInformationDb.getString('studentAddress') ?? "null";
+  //   displayName = studentInformationDb.getString('displayName') ?? "null";
+  // }
 }

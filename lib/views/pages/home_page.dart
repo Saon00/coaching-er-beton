@@ -2,6 +2,7 @@ import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
+import 'package:coachingerbeton/views/pages/students/student_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,9 +24,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getStudentInfoPref();
+    // getStudentInfoPref();
+    print('Name: ${StudentInfoUtils.displayName}');
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Hi, $displayName',
+              'Hi, ${StudentInfoUtils.displayName ?? "kire"}',
               style: titlePopins.copyWith(fontSize: 20),
             ),
           ),
@@ -76,6 +77,20 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const SizedBox(height: 15),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const StudentInformationPage()));
+                },
+                child: const Text('next')),
+
+            Text("${StudentInfoUtils.studentName}"),
+            Text("${StudentInfoUtils.studentBatch}"),
+            Text("${StudentInfoUtils.studentPhoneNumber}"),
+            Text("${StudentInfoUtils.studentAddress}"),
           ],
         ),
       ),

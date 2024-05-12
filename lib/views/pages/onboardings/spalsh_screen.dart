@@ -1,4 +1,7 @@
+import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
+import 'package:coachingerbeton/views/pages/home_page.dart';
+import 'package:coachingerbeton/views/pages/onboardings/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,6 +12,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3)).then((value) => checkUser());
+  }
+
+  Future<void> checkUser() async {
+    final bool result = await StudentInfoUtils.checkExistingUser();
+    if (result) {
+      StudentInfoUtils.getStudentInfo();
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+          (route) => false);
+    } else {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          (route) => false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

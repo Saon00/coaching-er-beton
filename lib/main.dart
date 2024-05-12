@@ -1,10 +1,7 @@
 import 'package:coachingerbeton/controllers/languagechangecontroller/lanchngcontroller.dart';
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
-import 'package:coachingerbeton/views/pages/home_page.dart';
 import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
-import 'package:coachingerbeton/views/pages/onboardings/welcome_screen.dart';
-import 'package:coachingerbeton/views/pages/students/student_information.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

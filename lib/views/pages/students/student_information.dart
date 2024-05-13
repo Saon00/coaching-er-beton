@@ -1,6 +1,7 @@
 import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
+import 'package:coachingerbeton/views/components/snackbar_msg.dart';
 import 'package:coachingerbeton/views/pages/students/studentwidgets/textformwid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -54,11 +55,16 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   //     ],
   //   );
   // }
+  static const List<String> _kOptions = <String>[
+    'aardvark',
+    'bobcat',
+    'chameleon',
+  ];
 
   Future<void> _addStudent() async {
     await StudentInfoUtils.saveStudentInfoPref(
         nameController.text.toString().trim(),
-        batchController.text.toString().trim(),
+        batchController.text.toString().trim().toUpperCase(),
         phoneNumberController.text.toString().trim(),
         addressController.text.toString().trim());
   }
@@ -83,20 +89,23 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                     textInputType: TextInputType.text,
                     fieldValidator: (value) {
                       if (value?.isEmpty == true) {
-                        return "student's name required";
+                        return AppLocalizations.of(context)!
+                            .studentnamerequired;
                       }
                       return null;
                     },
                   ),
                   const SizedBox(height: 10),
                   //class
+
                   TextFormWidget(
                     controller: batchController,
                     hintText: AppLocalizations.of(context)!.classname,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.text,
                     fieldValidator: (value) {
                       if (value?.isEmpty == true) {
-                        return "student's batch required";
+                        return AppLocalizations.of(context)!
+                            .studentclassrequired;
                       }
                       return null;
                     },
@@ -109,7 +118,8 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                     textInputType: TextInputType.number,
                     fieldValidator: (value) {
                       if (value?.isEmpty == true) {
-                        return "student's phone number required";
+                        return AppLocalizations.of(context)!
+                            .studentphonenumberrequired;
                       }
                       return null;
                     },
@@ -127,18 +137,14 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                       // FocusScope.of(context).unfocus();
                       if (key.currentState!.validate()) {
                         _addStudent();
-
-                        print('Name: ${nameController.text.toString()}');
-
-                        print("${StudentInfoUtils.studentName}");
-                        print("${StudentInfoUtils.studentBatch}");
-                        print("${StudentInfoUtils.studentPhoneNumber}");
-                        print("${StudentInfoUtils.studentAddress}");
                       }
                       nameController.clear();
                       batchController.clear();
                       phoneNumberController.clear();
                       addressController.clear();
+
+                      showSnackBarMessage(context,
+                          AppLocalizations.of(context)!.successfullyadded);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,

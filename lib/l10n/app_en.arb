@@ -1,15 +1,16 @@
 {
-    "studentinformation": "Student Information",
+    "studentinformation": "Add Student Information",
     "paid": "Paid",
     "unpaid" : "Unpaid",
     "name": "name",
     "studentnamerequired" : "student's name required",
     "studentclassrequired" : "student's class required",
     "studentphonenumberrequired" : "student's phone number required",
-    "classname" : "class",
+    "classname" : "batch",
     "address" : "address",
     "phonenumber" : "phone number",
     "enterdisplayname" : "enter your display name",
     "submit" : "Submit",
-    "namerequired" : "name required"
+    "namerequired" : "name required",
+    "successfullyadded" : "Successfully Added"
 }

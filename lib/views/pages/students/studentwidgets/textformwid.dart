@@ -18,6 +18,7 @@ class TextFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofillHints: const [AutofillHints.jobTitle],
       validator: fieldValidator,
       controller: controller,
       keyboardType: textInputType,

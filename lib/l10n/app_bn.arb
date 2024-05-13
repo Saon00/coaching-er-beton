@@ -1,15 +1,16 @@
 {
-    "studentinformation": "শিক্ষার্থীর তথ্য",
+    "studentinformation": "শিক্ষার্থীর তথ্য যুক্ত করুন",
     "paid": "প্রাপ্ত",
     "unpaid" : "বাকি",
     "name": "নাম",
     "studentnamerequired" : "শিক্ষার্থীর নাম দিতে হবে",
     "studentclassrequired" : "শিক্ষার্থীর শ্রেণি দিতে হবে",
     "studentphonenumberrequired" : "শিক্ষার্থীর ফোন নাম্বার দিতে হবে",
-    "classname" : "শ্রেণি",
+    "classname" : "ব্যাচ",
     "address" : "ঠিকানা",
     "phonenumber" : "ফোন নাম্বার",
     "enterdisplayname" : "আপনার নাম লিখুন",
     "submit" : "জমা দিন",
-    "namerequired" : "নাম দিতে হবে"
+    "namerequired" : "নাম দিতে হবে",
+    "successfullyadded" : "সফলভাবে যুক্ত হয়েছে"
 }

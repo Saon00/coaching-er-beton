@@ -137,14 +137,13 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                       // FocusScope.of(context).unfocus();
                       if (key.currentState!.validate()) {
                         _addStudent();
+                        showSnackBarMessage(context,
+                            AppLocalizations.of(context)!.successfullyadded);
                       }
                       nameController.clear();
                       batchController.clear();
                       phoneNumberController.clear();
                       addressController.clear();
-
-                      showSnackBarMessage(context,
-                          AppLocalizations.of(context)!.successfullyadded);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: primaryColor,

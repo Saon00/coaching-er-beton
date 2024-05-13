@@ -1,4 +1,5 @@
-import 'package:coachingerbeton/controllers/languagechangecontroller/lanchngcontroller.dart';
+import 'package:coachingerbeton/controllers/lanchngcontroller.dart';
+import 'package:coachingerbeton/controllers/themecontroller.dart';
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/responsive.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: primaryColor,
       width: width(context) * .50,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -46,26 +46,13 @@ class _MyDrawerState extends State<MyDrawer> {
                 ];
               });
             }),
-
-            // Consumer<LanguageChangeController>(
-            //     builder: (builder, value, context) {
-            //   return DropdownButton(
-            //     onTap: (Language language){
-            //       if (Language.english.name == language.name) {
-            //         value.changeLanguage(const Locale('en'));
-            //       } else {
-            //         value.changeLanguage(const Locale('bn'));
-            //       }
-            //     },
-            //     items: <String>['A', 'B', 'C', 'D'].map((String value) {
-            //       return DropdownMenuItem<String>(
-            //         value: value,
-            //         child: Text(value),
-            //       );
-            //     }).toList(),
-            //     onChanged: (_) {},
-            //   );
-            // })
+            const Text('tss'),
+            TextButton(
+                onPressed: () {
+                  Provider.of<ThemeContoller>(context, listen: false)
+                      .toggleTheme();
+                },
+                child: const Text('Theme')),
           ],
         ),
       ),

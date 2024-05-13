@@ -23,4 +23,15 @@ class ThemeContoller with ChangeNotifier {
       themeData = ThemeData.light();
     }
   }
+
+  bool _isDark = false;
+  bool get isDark => _isDark;
+  set isDark(bool value) {
+    _isDark = value;
+    notifyListeners();
+  }
+
+  changeTheme() {
+    isDark = !_isDark;
+  }
 }

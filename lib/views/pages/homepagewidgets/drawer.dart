@@ -46,13 +46,21 @@ class _MyDrawerState extends State<MyDrawer> {
                 ];
               });
             }),
-            const Text('tss'),
-            TextButton(
-                onPressed: () {
-                  Provider.of<ThemeContoller>(context, listen: false)
-                      .toggleTheme();
-                },
-                child: const Text('Theme')),
+            // TextButton(
+            //     onPressed: () {
+            //       Provider.of<ThemeContoller>(context, listen: false)
+            //           .toggleTheme();
+            //     },
+            //     child: const Text('Theme')),
+            Consumer<ThemeContoller>(builder: (context, value, child) {
+              return Switch(
+                  value: value.isDark,
+                  onChanged: (v) {
+                    setState(() {
+                      value.changeTheme();
+                    });
+                  });
+            })
           ],
         ),
       ),

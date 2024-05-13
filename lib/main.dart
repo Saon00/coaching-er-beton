@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ThemeData themeData = ThemeData();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => LanguageChangeController()),
@@ -45,18 +44,12 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: const [Locale('en'), Locale('bn')],
-            // theme: themeData.copyWith(
-            //     appBarTheme: AppBarTheme(
-            //         color: primaryColor,
-            //         centerTitle: true,
-            //         titleTextStyle: titlePopins.copyWith(
-            //             fontSize: 20,
-            //             color: blackColor,
-            //             fontWeight: FontWeight.bold))),
             debugShowCheckedModeBanner: false,
             home: const SplashScreen(),
-            theme: Provider.of<ThemeContoller>(context).themeData,
-            
+            // theme: Provider.of<ThemeContoller>(context).themeData,
+            theme: Provider.of<ThemeContoller>(context).isDark
+                ? ThemeData.light()
+                : ThemeData.dark(),
           );
         },
       ),

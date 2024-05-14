@@ -1,4 +1,4 @@
-import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
+import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/components/snackbar_msg.dart';
@@ -55,11 +55,6 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   //     ],
   //   );
   // }
-  static const List<String> _kOptions = <String>[
-    'aardvark',
-    'bobcat',
-    'chameleon',
-  ];
 
   Future<void> _addStudent() async {
     await StudentInfoUtils.saveStudentInfoPref(
@@ -73,7 +68,9 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.studentinformation),
+        title: Text(AppLocalizations.of(context)!.studentinformation,
+            style: titlePopins.copyWith(fontWeight: FontWeight.bold)),
+        centerTitle: true,
       ),
       body: Form(
           key: key,
@@ -146,7 +143,7 @@ class _StudentInformationPageState extends State<StudentInformationPage> {
                       addressController.clear();
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
+                        backgroundColor: primaryColor.withOpacity(0.8),
                         foregroundColor: Colors.black),
                     child: Text(
                       AppLocalizations.of(context)!.submit,

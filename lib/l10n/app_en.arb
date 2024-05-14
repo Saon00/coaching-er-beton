@@ -12,5 +12,6 @@
     "enterdisplayname" : "enter your display name",
     "submit" : "Submit",
     "namerequired" : "name required",
-    "successfullyadded" : "Successfully Added"
+    "successfullyadded" : "Successfully Added",
+    "tk" : "$"
 }

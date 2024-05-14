@@ -1,6 +1,5 @@
 import 'package:coachingerbeton/controllers/lanchngcontroller.dart';
 import 'package:coachingerbeton/controllers/themecontroller.dart';
-import 'package:coachingerbeton/views/components/colors.dart';
 import 'package:coachingerbeton/views/components/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

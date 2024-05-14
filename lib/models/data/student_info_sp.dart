@@ -27,16 +27,15 @@ class StudentInfoUtils {
   }
 
   static Future<void> saveStudentDisplayNamePref(String saveDisplayName) async {
-    SharedPreferences studentInformationDb =
-        await SharedPreferences.getInstance();
-    await studentInformationDb.setString('displayName', saveDisplayName);
+    SharedPreferences displayNameDb = await SharedPreferences.getInstance();
+    await displayNameDb.setString('displayName', saveDisplayName);
 
     displayName = saveDisplayName;
   }
 
   static Future<bool> checkExistingUser() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? displayName = sharedPreferences.getString('displayName');
+    displayName = sharedPreferences.getString('displayName');
 
     if (displayName == null) {
       return false;
@@ -54,6 +53,12 @@ class StudentInfoUtils {
     studentAddress = studentInformationDb.getString('studentAddress');
     displayName = studentInformationDb.getString('displayName');
   }
+
+  // static Future<bool> setThemeColor(bool saveIsDark) async {
+  //   SharedPreferences themeInfoDB =
+  //       await SharedPreferences.getInstance();
+  //      isDark = themeInfoDB.setBool('isDark', saveIsDark);
+  // }
 
   // getStudentInfoPref() async {
   //   SharedPreferences studentInformationDb = await SharedPreferences.getInstance();

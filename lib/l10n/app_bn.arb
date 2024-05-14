@@ -12,5 +12,6 @@
     "enterdisplayname" : "আপনার নাম লিখুন",
     "submit" : "জমা দিন",
     "namerequired" : "নাম দিতে হবে",
-    "successfullyadded" : "সফলভাবে যুক্ত হয়েছে"
+    "successfullyadded" : "সফলভাবে যুক্ত হয়েছে",
+    "tk" : "৳"
 }

@@ -1,4 +1,4 @@
-import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
+import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/views/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,8 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     return null;
                   },
                   controller: name,
-                  style: titlePopins.copyWith(
-                      color: Colors.black.withOpacity(0.6)),
+                  style: titlePopins,
                   decoration: InputDecoration(
                       hintText: AppLocalizations.of(context)!.enterdisplayname,
                       border: OutlineInputBorder(

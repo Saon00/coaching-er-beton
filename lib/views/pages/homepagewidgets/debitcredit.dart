@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import '../../components/fonts.dart';
 import '../../components/responsive.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class DebitCreditWidget extends StatelessWidget {
   final String title;
   final double amount;
@@ -19,7 +21,7 @@ class DebitCreditWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // height: height(context) * .15,
-      width: width(context) * .45,
+      width: width(context) * .43,
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(15)),
       child: Padding(
@@ -27,9 +29,10 @@ class DebitCreditWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: titlePopins.copyWith(fontSize: 30)),
+            Text(title, style: titlePopins.copyWith(fontSize: 15)),
             const SizedBox(height: 5),
-            Text('$amount ৳', style: titlePopins.copyWith(fontSize: 30)),
+            Text('$amount ${AppLocalizations.of(context)!.tk}',
+                style: titlePopins.copyWith(fontSize: 20)),
           ],
         ),
       ),

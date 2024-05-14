@@ -1,4 +1,4 @@
-import 'package:coachingerbeton/models/data/student_infoo_sp.dart';
+import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'Hi, ${StudentInfoUtils.displayName ?? "kire"}',
+              'Hi, ${StudentInfoUtils.displayName ?? ""}',
               style: titlePopins.copyWith(fontSize: 20),
             ),
           ),

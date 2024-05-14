@@ -1,7 +1,5 @@
 import 'package:coachingerbeton/controllers/lanchngcontroller.dart';
 import 'package:coachingerbeton/controllers/themecontroller.dart';
-import 'package:coachingerbeton/views/components/colors.dart';
-import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,8 +46,8 @@ class MyApp extends StatelessWidget {
             home: const SplashScreen(),
             // theme: Provider.of<ThemeContoller>(context).themeData,
             theme: Provider.of<ThemeContoller>(context).isDark
-                ? ThemeData.light()
-                : ThemeData.dark(),
+                ? ThemeData.dark()
+                : ThemeData.light(),
           );
         },
       ),

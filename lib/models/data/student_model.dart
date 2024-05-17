@@ -1,4 +1,5 @@
-class Student {
+class StudentModel {
+  int? id;
   String? name;
   String? batch;
   String? phoneNumber;
@@ -6,7 +7,8 @@ class Student {
   bool? isPaid;
   DateTime? dateTime;
 
-  Student({
+  StudentModel({
+    this.id,
     this.name,
     this.batch,
     this.phoneNumber,
@@ -15,7 +17,8 @@ class Student {
     this.dateTime,
   });
 
-  Student.fromJson(Map<String, dynamic> json) {
+  StudentModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     batch = json['batch'];
     phoneNumber = json['phoneNumber'];
@@ -26,6 +29,7 @@ class Student {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['name'] = name;
     data['batch'] = batch;
     data['phoneNumber'] = phoneNumber;

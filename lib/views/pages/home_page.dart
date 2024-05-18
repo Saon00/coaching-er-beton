@@ -1,5 +1,6 @@
 import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
+import 'package:coachingerbeton/views/pages/batch_page.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
 import 'package:coachingerbeton/views/pages/students/student_information.dart';
@@ -90,6 +91,15 @@ class _HomePageState extends State<HomePage> {
             Text("${StudentInfoUtils.studentBatch}"),
             Text("${StudentInfoUtils.studentPhoneNumber}"),
             Text("${StudentInfoUtils.studentAddress}"),
+
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BatchPage()));
+                },
+                child: const Text('batch page'))
           ],
         ),
       ),

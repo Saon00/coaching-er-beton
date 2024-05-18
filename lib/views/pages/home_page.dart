@@ -1,4 +1,5 @@
 import 'package:coachingerbeton/models/data/student_info_sp.dart';
+import 'package:coachingerbeton/models/database/db_helper.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/batch_page.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
@@ -11,21 +12,30 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  // String dateTime() {
-  //  return DateFormat.MMMM().format(DateTime.now());
-  // }
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // final now = DateTime.now();
+  DatabaseHelper db = DatabaseHelper();
+  int totalPaid = 0;
+  int totalUnpaid = 0;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    // getStudentInfoPref();
+    fetchTotals();
+  }
+
+  Future<void> fetchTotals() async {
+    int paid = await db.getTotalSalary(isPaid: 1);
+    int unpaid = await db.getTotalSalary(isPaid: 0);
+    setState(() {
+      totalPaid = paid;
+      totalUnpaid = unpaid;
+      isLoading = false;
+    });
   }
 
   @override
@@ -67,12 +77,12 @@ class _HomePageState extends State<HomePage> {
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.paid.toString(),
                   color: Colors.green,
-                  amount: 2000,
+                  amount: totalPaid,
                 ),
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.unpaid.toString(),
                   color: Colors.redAccent,
-                  amount: 2000,
+                  amount: totalUnpaid,
                 ),
               ],
             ),
@@ -86,11 +96,6 @@ class _HomePageState extends State<HomePage> {
                               const StudentInformationPage()));
                 },
                 child: const Text('next')),
-
-            Text("${StudentInfoUtils.studentName}"),
-            Text("${StudentInfoUtils.studentBatch}"),
-            Text("${StudentInfoUtils.studentPhoneNumber}"),
-            Text("${StudentInfoUtils.studentAddress}"),
 
             ElevatedButton(
                 onPressed: () {

@@ -180,7 +180,6 @@
 // }
 
 import 'package:coachingerbeton/models/database/db_helper.dart';
-import 'package:coachingerbeton/views/pages/pd.dart';
 import 'package:flutter/material.dart';
 
 class StudentListScreen extends StatefulWidget {
@@ -200,36 +199,12 @@ class _StudentListScreenState extends State<StudentListScreen> {
   @override
   void initState() {
     super.initState();
-    fetchStudentsWithPayments();
+    fetchStudents();
   }
 
-  Future<void> fetchStudentsWithPayments() async {
+  Future<void> fetchStudents() async {
+    students = await db.getStudents(widget.batchId);
     setState(() {
-      isLoading = true;
-    });
-
-    List<Map<String, dynamic>> studentList =
-        await db.getStudents(widget.batchId);
-
-    List<Map<String, dynamic>> updatedStudentList = [];
-
-    for (var student in studentList) {
-      int studentId = student['id'];
-      List<Map<String, dynamic>> payments = await db.getPayments(studentId);
-      bool isFullyPaid = payments.every((payment) => payment['ispaid'] == 1);
-      num totalDue =
-          payments.where((payment) => payment['ispaid'] == 0).length *
-              student['salary'];
-
-      updatedStudentList.add({
-        ...student,
-        'isFullyPaid': isFullyPaid,
-        'totalDue': totalDue,
-      });
-    }
-
-    setState(() {
-      students = updatedStudentList;
       isLoading = false;
     });
   }
@@ -244,6 +219,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
     TextEditingController salaryController = TextEditingController(
       text: student != null ? student['salary'].toString() : '',
     );
+    bool isPaid = student != null ? student['ispaid'] == 1 : false;
 
     showDialog(
       context: context,
@@ -264,6 +240,19 @@ class _StudentListScreenState extends State<StudentListScreen> {
               controller: salaryController,
               decoration: const InputDecoration(hintText: 'Salary'),
               keyboardType: TextInputType.number,
+            ),
+            Row(
+              children: [
+                const Text('Paid'),
+                Checkbox(
+                  value: isPaid,
+                  onChanged: (value) {
+                    setState(() {
+                      isPaid = value!;
+                    });
+                  },
+                ),
+              ],
             ),
           ],
         ),
@@ -289,17 +278,17 @@ class _StudentListScreenState extends State<StudentListScreen> {
                   'studentname': nameController.text,
                   'phonenumber': phoneController.text,
                   'salary': int.parse(salaryController.text),
-                  'ispaid': 0,
-                  'paid_date': null,
+                  'ispaid': isPaid ? 1 : 0,
                 });
               } else {
                 await db.updateStudent(student['id'], {
                   'studentname': nameController.text,
                   'phonenumber': phoneController.text,
                   'salary': int.parse(salaryController.text),
+                  'ispaid': isPaid ? 1 : 0,
                 });
               }
-              fetchStudentsWithPayments();
+              fetchStudents();
               Navigator.of(context).pop();
             },
             child: const Text('Save'),
@@ -311,7 +300,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
 
   void deleteStudent(int id) async {
     await db.deleteStudent(id);
-    fetchStudentsWithPayments();
+    fetchStudents();
   }
 
   @override
@@ -326,10 +315,30 @@ class _StudentListScreenState extends State<StudentListScreen> {
               itemCount: students.length,
               itemBuilder: (context, index) {
                 final student = students[index];
-                return StudentTile(
-                  student: student,
-                  onUpdate: (student) => showStudentDialog(student: student),
-                  onDelete: deleteStudent,
+                bool isPaid = student['ispaid'] == 1;
+                return Card(
+                  color: isPaid ? Colors.green : Colors.red,
+                  child: ListTile(
+                    title: Text(student['studentname']),
+                    subtitle: Text(
+                        'Phone: ${student['phonenumber']}\nSalary: ${student['salary']}'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () => showStudentDialog(student: student),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => deleteStudent(student['id']),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      // Additional logic for detailed view can be added here
+                    },
+                  ),
                 );
               },
             ),

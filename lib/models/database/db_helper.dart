@@ -125,6 +125,16 @@ class DatabaseHelper {
     return await db
         .query('Payments', where: 'student_id = ?', whereArgs: [studentId]);
   }
+
+  Future<int> getTotalSalary({required int isPaid}) async {
+    final db = await database;
+    var result = await db.rawQuery('''
+      SELECT SUM(salary) as total 
+      FROM students 
+      WHERE ispaid = ?
+    ''', [isPaid]);
+    return Sqflite.firstIntValue(result) ?? 0;
+  }
 }
 
 

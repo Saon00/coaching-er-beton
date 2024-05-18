@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DebitCreditWidget extends StatelessWidget {
   final String title;
-  final double amount;
+  final int amount;
   final Color color;
   const DebitCreditWidget({
     super.key,

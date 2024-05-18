@@ -126,6 +126,16 @@ class DatabaseHelper {
         .query('Payments', where: 'student_id = ?', whereArgs: [studentId]);
   }
 
+  // Future<int> getTotalSalary({required int isPaid}) async {
+  //   final db = await database;
+  //   var result = await db.rawQuery('''
+  //     SELECT SUM(salary) as total
+  //     FROM students
+  //     WHERE ispaid = ?
+  //   ''', [isPaid]);
+  //   return Sqflite.firstIntValue(result) ?? 0;
+  // }
+
   Future<int> getTotalSalary({required int isPaid}) async {
     final db = await database;
     var result = await db.rawQuery('''
@@ -135,10 +145,13 @@ class DatabaseHelper {
     ''', [isPaid]);
     return Sqflite.firstIntValue(result) ?? 0;
   }
+
+  Future<void> updateStudentPaidStatus(int id, int isPaid) async {
+    final db = await database;
+    await db.update('students', {'ispaid': isPaid},
+        where: 'id = ?', whereArgs: [id]);
+  }
 }
-
-
-
 
 // class DatabaseService {
 //   static Database? _database;
@@ -170,6 +183,6 @@ class DatabaseHelper {
 
 //   Future<void> create(Database database, int version) async {
 //     await StudentDatabase().createTable(database);
-    
+
 //   }
 // }

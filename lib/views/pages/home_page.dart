@@ -1,13 +1,19 @@
+import 'dart:math';
+
+import 'package:coachingerbeton/controllers/paid_unpaid_controller.dart';
 import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/models/database/db_helper.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/batch_page.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
+import 'package:coachingerbeton/views/pages/student_page.dart';
 import 'package:coachingerbeton/views/pages/students/student_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,25 +23,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DatabaseHelper db = DatabaseHelper();
-  int totalPaid = 0;
-  int totalUnpaid = 0;
-  bool isLoading = true;
+  PaidUnpaidController? paidUnpaidController;
 
   @override
   void initState() {
     super.initState();
-    fetchTotals();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      paidUnpaidController =
+          Provider.of<PaidUnpaidController>(context, listen: false);
+      await fetchTotals();
+    });
   }
 
   Future<void> fetchTotals() async {
+    DatabaseHelper db = DatabaseHelper();
     int paid = await db.getTotalSalary(isPaid: 1);
     int unpaid = await db.getTotalSalary(isPaid: 0);
-    setState(() {
-      totalPaid = paid;
-      totalUnpaid = unpaid;
-      isLoading = false;
-    });
+    paidUnpaidController?.fetchTotals(paid, unpaid); // Update data in provider
   }
 
   @override
@@ -71,21 +75,39 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 15),
 
             // money flow
+            // Consumer<PaidUnpaidController>(builder: (context, value, child) {
+            //   return Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       DebitCreditWidget(
+            //         title: AppLocalizations.of(context)!.paid.toString(),
+            //         color: Colors.green,
+            //         amount: value.totalPaid,
+            //       ),
+            //       DebitCreditWidget(
+            //         title: AppLocalizations.of(context)!.unpaid.toString(),
+            //         color: Colors.redAccent,
+            //         amount: value.totalUnpaid,
+            //       ),
+            //     ],
+            //   );
+            // }),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.paid.toString(),
                   color: Colors.green,
-                  amount: totalPaid,
+                  amount: paidUnpaidController!.totalPaid,
                 ),
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.unpaid.toString(),
                   color: Colors.redAccent,
-                  amount: totalUnpaid,
+                  amount: paidUnpaidController!.totalUnpaid,
                 ),
               ],
             ),
+
             const SizedBox(height: 15),
             ElevatedButton(
                 onPressed: () {

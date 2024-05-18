@@ -1,4 +1,5 @@
 import 'package:coachingerbeton/controllers/lanchngcontroller.dart';
+import 'package:coachingerbeton/controllers/paid_unpaid_controller.dart';
 import 'package:coachingerbeton/controllers/themecontroller.dart';
 import 'package:coachingerbeton/views/pages/onboardings/spalsh_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LanguageChangeController()),
         ChangeNotifierProvider(create: (context) => ThemeContoller()),
+        ChangeNotifierProvider(create: (context) => PaidUnpaidController()),
       ],
       child: Consumer<LanguageChangeController>(
         builder: (context, value, child) {

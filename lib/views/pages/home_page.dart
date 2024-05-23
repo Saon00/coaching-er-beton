@@ -1,19 +1,14 @@
-import 'dart:math';
-
 import 'package:coachingerbeton/controllers/paid_unpaid_controller.dart';
 import 'package:coachingerbeton/models/data/student_info_sp.dart';
-import 'package:coachingerbeton/models/database/db_helper.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/batch_page.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
-import 'package:coachingerbeton/views/pages/student_page.dart';
 import 'package:coachingerbeton/views/pages/students/student_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,24 +18,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  PaidUnpaidController? paidUnpaidController;
+  // PaidUnpaidController? paidUnpaidController;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      paidUnpaidController =
-          Provider.of<PaidUnpaidController>(context, listen: false);
-      await fetchTotals();
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) async {
+  //     paidUnpaidController =
+  //         Provider.of<PaidUnpaidController>(context, listen: false);
+  //     await fetchTotals();
+  //   });
+  //   fetchTotals();
+  // }
 
-  Future<void> fetchTotals() async {
-    DatabaseHelper db = DatabaseHelper();
-    int paid = await db.getTotalSalary(isPaid: 1);
-    int unpaid = await db.getTotalSalary(isPaid: 0);
-    paidUnpaidController?.fetchTotals(paid, unpaid); // Update data in provider
-  }
+  // Future<void> fetchTotals() async {
+  //   DatabaseHelper db = DatabaseHelper();
+  //   int paid = await db.getTotalSalary(isPaid: 1);
+  //   int unpaid = await db.getTotalSalary(isPaid: 0);
+  //   paidUnpaidController?.fetchTotals(paid, unpaid); // Update data in provider
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +94,12 @@ class _HomePageState extends State<HomePage> {
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.paid.toString(),
                   color: Colors.green,
-                  amount: paidUnpaidController!.totalPaid,
+                  amount: Provider.of<PaidUnpaidController>(context).totalPaid,
                 ),
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.unpaid.toString(),
                   color: Colors.redAccent,
-                  amount: paidUnpaidController!.totalUnpaid,
+                  amount: Provider.of<PaidUnpaidController>(context).totalUnpaid,
                 ),
               ],
             ),

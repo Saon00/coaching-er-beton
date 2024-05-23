@@ -51,7 +51,7 @@ class _BatchPageState extends State<BatchPage> {
                 await db.updateBatch(batch['id'], {'name': controller.text});
               }
               fetchBatches();
-              Navigator.of(context).pop();
+             if(context.mounted) Navigator.of(context).pop();
             },
             child: const Text('Save'),
           ),

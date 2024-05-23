@@ -294,7 +294,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
               }
               fetchStudents();
               fetchTotals();
-              Navigator.of(context).pop();
+              if(context.mounted) Navigator.of(context).pop();
             },
             child: const Text('Save'),
           ),

@@ -9,11 +9,11 @@ class PaidUnpaidController extends ChangeNotifier {
   int get totalPaid => _totalPaid;
   int get totalUnpaid => _totalUnpaid;
 
-  void fetchTotals(int newTotalPaid, int newTotalUnpaid) async {
-    // totalPaid = await db.getTotalSalary(isPaid: 1);
-    // totalUnpaid = await db.getTotalSalary(isPaid: 0);
-    _totalPaid = newTotalPaid;
-    _totalUnpaid = newTotalUnpaid;
+  void fetchTotals() async {
+    int tp = await db.getTotalSalary(isPaid: 1);
+    int tup = await db.getTotalSalary(isPaid: 0);
+    _totalPaid = tp;
+    _totalUnpaid = tup;
     notifyListeners();
   }
 }

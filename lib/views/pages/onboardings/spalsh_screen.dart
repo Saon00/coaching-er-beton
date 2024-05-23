@@ -19,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> checkUser() async {
-    final bool result = await StudentInfoUtils.checkExistingUser();
+    bool result = await StudentInfoUtils.checkExistingUser();
     if (result) {
-      StudentInfoUtils.getStudentInfo();
+      // StudentInfoUtils.getStudentInfo();
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),

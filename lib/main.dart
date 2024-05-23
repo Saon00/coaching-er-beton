@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [Locale('en'), Locale('bn')],
             debugShowCheckedModeBanner: false,
             home: const SplashScreen(),
+
             // theme: Provider.of<ThemeContoller>(context).themeData,
             theme: Provider.of<ThemeContoller>(context).isDark
                 ? ThemeData.dark()

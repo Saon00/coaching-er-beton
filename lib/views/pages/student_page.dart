@@ -1,6 +1,8 @@
+import 'package:coachingerbeton/controllers/paid_unpaid_controller.dart';
 import 'package:coachingerbeton/models/database/db_helper.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StudentListScreen extends StatefulWidget {
   final int batchId;

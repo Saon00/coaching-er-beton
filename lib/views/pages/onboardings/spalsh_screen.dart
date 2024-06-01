@@ -1,3 +1,4 @@
+import 'package:coachingerbeton/main_navbar.dart';
 import 'package:coachingerbeton/models/data/student_info_sp.dart';
 import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/home_page.dart';
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // StudentInfoUtils.getStudentInfo();
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const BottomNavBarPage()),
           (route) => false);
     } else {
       Navigator.pushAndRemoveUntil(

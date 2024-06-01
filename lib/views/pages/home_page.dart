@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // drawer
-      drawer: const MyDrawer(),
+      // drawer: const MyDrawer(),
 
       appBar: AppBar(
         // profile name
@@ -105,15 +105,6 @@ class _HomePageState extends State<HomePage> {
             ),
 
             const SizedBox(height: 15),
-
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const BatchPage()));
-                },
-                child: const Text('batch page'))
           ],
         ),
       ),

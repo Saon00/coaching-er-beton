@@ -4,7 +4,6 @@ import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/batch_page.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/debitcredit.dart';
 import 'package:coachingerbeton/views/pages/homepagewidgets/drawer.dart';
-import 'package:coachingerbeton/views/pages/students/student_information.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -99,21 +98,13 @@ class _HomePageState extends State<HomePage> {
                 DebitCreditWidget(
                   title: AppLocalizations.of(context)!.unpaid.toString(),
                   color: Colors.redAccent,
-                  amount: Provider.of<PaidUnpaidController>(context).totalUnpaid,
+                  amount:
+                      Provider.of<PaidUnpaidController>(context).totalUnpaid,
                 ),
               ],
             ),
 
             const SizedBox(height: 15),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const StudentInformationPage()));
-                },
-                child: const Text('next')),
 
             ElevatedButton(
                 onPressed: () {

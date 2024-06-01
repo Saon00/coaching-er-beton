@@ -1,4 +1,5 @@
 import 'package:coachingerbeton/models/database/db_helper.dart';
+import 'package:coachingerbeton/views/components/fonts.dart';
 import 'package:coachingerbeton/views/pages/student_page.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class _BatchPageState extends State<BatchPage> {
                 await db.updateBatch(batch['id'], {'name': controller.text});
               }
               fetchBatches();
-             if(context.mounted) Navigator.of(context).pop();
+              if (context.mounted) Navigator.of(context).pop();
             },
             child: const Text('Save'),
           ),
@@ -69,7 +70,11 @@ class _BatchPageState extends State<BatchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Batch Manager'),
+        centerTitle: true,
+        title: Text(
+          'Batch Manager',
+          style: titlePopins.copyWith(fontWeight: FontWeight.bold),
+        ),
       ),
       body: ListView.builder(
         itemCount: batches.length,
